@@ -1,0 +1,3 @@
+#!/bin/bash
+export JAVA_HOME="/opt/jdk1.8.0_301" 
+/opt/gradle-7.0/bin/gradle $1
