@@ -3,18 +3,24 @@ package com.webnest.core.entity.cadastro;
 import static jakarta.persistence.FetchType.LAZY;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 import com.webnest.core.entity.AbstractEntity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter @Getter
+@EqualsAndHashCode(of = "id", callSuper = false)
 public class Cidade implements AbstractEntity {
 
 	@Id
@@ -22,92 +28,21 @@ public class Cidade implements AbstractEntity {
 	
 	@Version
 	private int versao;
-	
+
+	@Column(nullable = false)
 	private UUID uuid;
-	private UUID chaveIdemPotente;
 	
 	private int codigoIbge;
+	
+	@Column(length = 100)
 	private String nome;
 	
 	@ManyToOne(fetch = LAZY)
+	@JoinColumn(nullable = false)
 	private Estado estado;
 	
 	@OneToMany(mappedBy = "cidade", fetch = LAZY)
 	private List<Bairro> bairros;
-	
-	@Override
-	public Long getId() {
-		return id;
-	}
-	
-	@Override
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	@Override
-	public int getVersao() {
-		return versao;
-	}
-
-	@Override
-	public void setVersao(int versao) {
-		this.versao = versao;
-	}
-
-	@Override
-	public UUID getUuid() {
-		return uuid;
-	}
-
-	@Override
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
-	
-	public int getCodigoIbge() {
-		return codigoIbge;
-	}
-	
-	public void setCodigoIbge(int codigoIbge) {
-		this.codigoIbge = codigoIbge;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Cidade other = (Cidade) obj;
-		return Objects.equals(id, other.id);
-	}
 	
 	@Override
 	public String toString() {
