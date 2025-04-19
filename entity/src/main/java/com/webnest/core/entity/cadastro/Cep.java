@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -36,6 +37,7 @@ public class Cep implements AbstractEntity{
 	@Column(length = 7, nullable = false)
 	private String codigo;
 	
+	@NotBlank
 	@Column(length = 255)
 	private String logradouro;
 	

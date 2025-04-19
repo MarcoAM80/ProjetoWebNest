@@ -14,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,6 +34,7 @@ public class Bairro implements AbstractEntity{
 	@Column(nullable = false)
 	private UUID uuid;
 	
+	@NotBlank
 	@Column(length = 100)
 	private String nome;
 	

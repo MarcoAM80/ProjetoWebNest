@@ -14,6 +14,8 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Version;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,9 +33,11 @@ public class Cidade implements AbstractEntity {
 
 	@Column(nullable = false)
 	private UUID uuid;
-	
+
+	@Positive
 	private int codigoIbge;
 	
+	@NotBlank
 	@Column(length = 100)
 	private String nome;
 	
